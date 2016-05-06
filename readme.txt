@@ -1,6 +1,6 @@
 === Rapidology - by LeadPages ===
-Plugin Name:  Rapidology - without leadpages
-Contributors: LeadPages
+Plugin Name:  Rapidology - by LeadPages without activation or attribution
+Contributors: LeadPages, Kailash
 Tags: wp popup, wordpress popup plugin, wordpress subscription plugin, responsive opt-in subscription plugin, free optinmonster alternative, list builder, sumome alternative, leadpages, bloom plugin, how to increase email list, email form, scroll box, newsletter, inbound marketing, mailing list, mailchimp, aweber, infusionsoft, campaign monitor, hubspot, salesforce, emma, activecampaign, constant contact, mad mimi, iContact, GetResponse, MailPoet, feedblitz, sendinblue, ontraport, landing page, light box, email list building, subscribers, subscription
 Requires at least: 3.5
 Tested up to: 4.5
@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 100% Free List Building & Popup Plugin...With Over 100 Responsive Templates & 6 Different Display Types For Growing Your Email Newsletter
 
-== Description == 
+== Description ==
 [youtube https://www.youtube.com/watch?v=gygc2pHJm3w]
 
 [See more at Rapidology.com](http://www.rapidology.com/ "See more at Rapidology.com")
@@ -31,7 +31,7 @@ Download this free WordPress plugin and add these seven types of email list-buil
 
 *	Inline Opt-In Forms: Want to insert an opt-in form in the middle of a blog post, rather than the end? Inline forms make it easy. You can display these forms virtually anywhere you’d like on any post or page on your website.
 
-*	Notification/Opt-In Bar:  Increase your opt-ins, announce your promotions and drive traffic to the pages of your choice with our attention grabbing top-of-page banner.  
+*	Notification/Opt-In Bar:  Increase your opt-ins, announce your promotions and drive traffic to the pages of your choice with our attention grabbing top-of-page banner.
 
 You can find out how all of your opt-in forms are performing right inside your Rapidology dashboard. We provide elegant visualizations of your conversion rates, impressions, subscriber counts, and more, so you can track your performance at a glance.
 
@@ -88,7 +88,7 @@ Rapidology’s import/export function allows you to easily export any opt-in for
 
 == Screenshots ==
 
-1.  Customizable opt-in forms - use on any WordPress site. 
+1.  Customizable opt-in forms - use on any WordPress site.
 2.  6 different types of opt-in forms available.
 3.  Our new notification and opt-in banner:  RapidBar
 4.  Choose from over 100 templates.
