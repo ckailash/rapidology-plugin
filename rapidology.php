@@ -4127,11 +4127,7 @@ SOL;
 	 * Generates the powered by button html
 	 */
 	static function get_power_button( $mode ) {
-		return '<div class="rad_power rad_power_mode_' . $mode . '">
-					<span class="rad_power_box_mode_' . $mode . '">
-						<a href="http://www.rapidology.com?utm_campaign=rp-rp&utm_medium=powered-by-badge" target="_blank">Powered by<span class="rad_power_logo">&nbsp</span><span class="rad_power_text">Rapidology</span></a>
-					</span>
-				</div>';
+		return '';
 	}
 
 
