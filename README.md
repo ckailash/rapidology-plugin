@@ -1,3 +1,10 @@
+# Rapidology without any activation or powered by links
+
+I forked the rapidology plugin by LeadPages, which was originally forked from Elegant Themes so that it doesn't have any activation or powered by links. ENJOY!
+
+Original readme below:
+
+
 # Rapidology - by LeadPages
 
 License: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
