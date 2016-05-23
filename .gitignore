@@ -6,3 +6,5 @@ rapidology/bin/*
 install-wp-tests.sh
 ”
 ”,
+*.
+.DS_Store

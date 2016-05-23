@@ -632,7 +632,6 @@ class RAD_Dashboard {
 				<div id="rad_dashboard_wrapper" class="rad_dashboard">',
 			esc_attr( $this->plugin_class_name )
 		);
-			
 		printf(
 					'<div id="rad_dashboard_header">
 						<div id="rad_dashboard_logo" class="rad_dashboard_icon_%1$s rad_dashboard_icon"></div>

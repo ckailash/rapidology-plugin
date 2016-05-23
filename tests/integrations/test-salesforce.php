@@ -28,7 +28,7 @@ class IntegrationsTestSalesforce extends WP_UnitTestCase {
   /**
    * @group success
    */
-  function test_get_salesforce_cmpaigns_success(){
+  function test_get_salesforce_campaigns_success(){
 	//ensure object is created and is instance of the correct provider
 	$this->assertInstanceOf($this->instance, $this->integration);
 	//setup items needed to make http call Should we mock this out?

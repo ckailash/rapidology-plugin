@@ -101,33 +101,42 @@ class rapidology_salesforce extends RAD_Rapidology{
 		}
 		//instantiate new salesforce class and login with your user. User needs to have access to campagins and leads
 		$salesforce = new Rapidology_SalesforceAPI($url, $version, $client_key, $client_secret);
-		$log_in = $salesforce->login($username_sf, $password_sf, $token);
-		if($log_in == 'Could not login'){
-		  return $log_in;
-		}
 
-		//perform soql query to get all lead information
-		$campagins = $salesforce->searchSOQL('select id, name, NumberOfLeads, NumberOfContacts from campaign where EndDate >= TODAY or EndDate = null');
-		$campagin_list = array();
-		foreach($campagins->records as $campaign){
-			$campagin_list[$campaign->Id]['name'] = $campaign->Name;
-			$campagin_list[$campaign->Id]['subscribers_count'] = $campaign->NumberOfLeads;
-			$campagin_list[$campaign->Id]['growth_week'] = sanitize_text_field($this->calculate_growth_rate('salesforce_' . $campaign->Id));
-		}
-		//echo '<pre>';print_r($campagin_list);
-		$this->update_account('salesforce', sanitize_text_field($name), array(
-			'url' 			=> $url,
-			'version' 		=> $version,
-			'client_key' 	=> $client_key,
-			'client_secret' => $client_secret,
-			'username_sf' 	=> $username_sf,
-			'password_sf' 	=> $password_sf,
-			'token' 		=> $token,
-			'lists' 		=> $campagin_list,
-			'is_authorized' => 'true',
-		));
-		$error_message = 'success';
-		return $error_message;
+        try {
+            $log_in = $salesforce->login($username_sf, $password_sf, $token);
+            if ($log_in == 'Could not login') {
+                return $log_in;
+            }
+
+            //perform soql query to get all lead information
+            $campagins     = $salesforce->searchSOQL('select id, name, NumberOfLeads, NumberOfContacts from campaign where EndDate >= TODAY or EndDate = null');
+            $campagin_list = array();
+            foreach ($campagins->records as $campaign) {
+                $campagin_list[$campaign->Id]['name']              = $campaign->Name;
+                $campagin_list[$campaign->Id]['subscribers_count'] = $campaign->NumberOfLeads;
+                $campagin_list[$campaign->Id]['growth_week']       = sanitize_text_field($this->calculate_growth_rate('salesforce_' . $campaign->Id));
+            }
+            //echo '<pre>';print_r($campagin_list);
+            $this->update_account('salesforce', sanitize_text_field($name), array(
+              'url'           => $url,
+              'version'       => $version,
+              'client_key'    => $client_key,
+              'client_secret' => $client_secret,
+              'username_sf'   => $username_sf,
+              'password_sf'   => $password_sf,
+              'token'         => $token,
+              'lists'         => $campagin_list,
+              'is_authorized' => 'true',
+            ));
+            $error_message = 'success';
+            return $error_message;
+        }catch(SalesforceAPIException $e){
+            $exceptionMessage = $e->getMessage();
+            $error_message = json_decode($exceptionMessage);
+            if($error_message[0]->errorCode == 'INVALID_OPERATION_WITH_EXPIRED_PASSWORD'){
+                return 'Your password has expired, please reset it in Salesforce and recreate your integration';
+            }
+        }
 	}
 
 	/**

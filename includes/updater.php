@@ -362,7 +362,7 @@ BOD;
 
 	public function get_changelog(){
 		$this->getRepoReleaseInfo();
-		if(strpos($this->config['githubAPIResult']->message, 'API rate limit exceeded') >= 0){
+		if(isset($this->config['githubAPIResult']->message) && strpos($this->config['githubAPIResult']->message, 'API rate limit exceeded') >= 0){
 			return '';
 		}
 		$_changelog = class_exists( "Parsedown" )

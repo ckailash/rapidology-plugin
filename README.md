@@ -5,11 +5,11 @@ I forked the rapidology plugin by LeadPages, which was originally forked from El
 Original readme below:
 
 
-# Rapidology - by LeadPages
+# Rapidology - by Leadpages &reg; 
 
 License: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
-100% free list buildilng and popup WordPress plugin by LeadPages, with
+100% free list buildilng and popup WordPress plugin by Leadpages &reg;, with
 over 100 responsive templates and 7 different display types for growing
 your email newsletter!
 
@@ -18,7 +18,7 @@ quickly create beautiful email opt-in forms, popups, widgets, and
 notification bars-no design or coding skills required!
 
 Requires Wordpress version of at least 3.5, tested up to 4.5. The
-current stable tag is 1.4.1.
+current stable tag is 1.4.3.
 
 [See more at Rapidology.com](http://www.rapidology.com/)
 
@@ -45,7 +45,7 @@ You can also run split tests with Rapidology’s built-in split testing feature 
 ## Features
 
 *	Compatible with any WordPress theme
-*	Simple email integration with AWeber, Emma, Hubspot, MailChimp, ActiveCampaign, SalesForce, Campaign Monitor, Constant Contact, Mad Mimi, Infusionsoft, iContact, GetResponse, mailpoet, feedblitz, SendInBlue, and Ontraport
+*	Simple email integration with AWeber, Emma, Hubspot, MailChimp, ActiveCampaign, SalesForce, Campaign Monitor, Constant Contact, Mad Mimi, Infusionsoft, iContact, GetResponse, mailpoet, feedblitz, SendInBlue, ConvertKit, Drip, and Ontraport
 *	All opt-in forms are 100% mobile responsive. You also have the option of disabling them on mobile, or hiding images on mobile.
 *	Built-in A/B split testing
 *	100+ beautiful opt-in form templates, all of them 100% customizable
@@ -75,7 +75,7 @@ You can use one of our 100+ beautifully designed templates right out of the box,
 
 **Does Rapidology work with my email service provider?**
 
-Rapidology integrates with AWeber, Emma, Hubspot, ActiveCampaign, SalesForce, MailChimp, Campaign Monitor, Constant Contact, Mad Mimi, Infusionsoft, iContact, GetResponse, mailpoet, feedblitz, SendInBlue, and Ontraport.
+Rapidology integrates with AWeber, Emma, Hubspot, ActiveCampaign, SalesForce, MailChimp, Campaign Monitor, Constant Contact, Mad Mimi, Infusionsoft, iContact, GetResponse, mailpoet, feedblitz, SendInBlue, ConvertKit, Drip, and Ontraport.
 
 **How will these opt-in forms work on mobile?**
 
@@ -90,6 +90,14 @@ Check your analytics dashboard to see at a glance how many times an opt-in form 
 Rapidology’s import/export function allows you to easily export any opt-in form you have created. This saved form can then be imported into any other WordPress account that has the Rapidology plugin installed.
 
 ## Changelog
+###1.4.3 - 5/16/16
+* Added Drip integration
+* Added ConvertKit Integration
+* Updated Leadpages branding
+* Fixed issue on the ability to duplicate Rapidbar
+* Fixed issue with On-click trigger re-triggering
+* Fixed issue in Constant Contact to reactivate a removed contact
+
 ##1.4.2.2 - 04/04/16
 * Fixed bug that prevented users from submitting opt-in forms
 

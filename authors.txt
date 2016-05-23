@@ -12,7 +12,7 @@
 
 /*************************************************************************/
 
-LeadPages ™.
+Leadpages®.
 Elegant Themes, Inc. Bloom Plugin
 
 
@@ -24,3 +24,6 @@ http://www.gnu.org/prep/maintain/maintain.html#Recording-Contributors
 *	Getresponse-php-wrapper | @copyright Copyright (c) 2010 Assembly Studios
 *	haPiHP https://github.com/HubSpot/haPiHP/wiki/haPiHP](https://github.com/HubSpot/haPiHP/wiki/haPiHP
 *	myemma/EmmaPHP wrapper https://github.com/myemma/EmmaPHP
+
+Daniel Espinoza - https://github.com/growdev
+* Contributed ConvertKit integration to Rapidology

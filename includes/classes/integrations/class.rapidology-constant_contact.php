@@ -100,6 +100,7 @@ class rapidology_constant_contact extends RAD_Rapidology
 	  if(!is_email( $email )){
 		return "Email address appears to be incorrect";
 	  }
+		$email = urlencode($email);
 		$request_url   = esc_url_raw( 'https://api.constantcontact.com/v2/contacts?email=' . $email . '&api_key=' . $api_key );
 		$error_message = '';
 
@@ -114,10 +115,12 @@ class rapidology_constant_contact extends RAD_Rapidology
 			$response       = json_decode( $theme_response, true );
 
 			if ( empty( $response['results'] ) ) {
+
 				$request_url   = esc_url_raw( 'https://api.constantcontact.com/v2/contacts?api_key=' . $api_key );
 				$body_request  = '{"email_addresses":[{"email_address": "' . $email . '" }], "lists":[{"id": "' . $list_id . '"}], "first_name": "' . $name . '", "last_name" : "' . $last_name . '" }';
 				$theme_request = wp_remote_post( $request_url, array(
 					'timeout' => 30,
+					//'method' => 'PUT',
 					'headers' => array(
 						'Authorization' => 'Bearer ' . $token,
 						'content-type'  => 'application/json',
@@ -125,6 +128,7 @@ class rapidology_constant_contact extends RAD_Rapidology
 					'body'    => $body_request,
 				) );
 				$response_code = wp_remote_retrieve_response_code( $theme_request );
+				print_r($response_code);die();
 				if ( ! is_wp_error( $theme_request ) && $response_code == 201 ) {
 					$error_message = 'success';
 				} else {
@@ -137,16 +141,17 @@ class rapidology_constant_contact extends RAD_Rapidology
 			  if($response['results'][0]['id'] > 0) {
 				  $contactId = $response['results'][0]['id'];
 				  $error_message = $this->updateContactThatHasBeenRemoved($api_key, $token, $contactId, $list_id);
-
 				  //$error_message = __('success', 'rapidology');//show a success if they are already subscribed
 			  }else{
-				$error_message = __('General Error', 'rapidology');//show a success if they are already subscribed
+				$error_message = __('General Error', 'rapidology');
 			  }
 			}
 		} else {
 			$error_map     = array(
 				"401" => 'Invalid Token',
-				"403" => 'Invalid API key'
+				"403" => 'Invalid API key',
+				"409" => 'Contact Already Exists'
+
 			);
 			$error_message = $this->get_error_message( $theme_request, $response_code, $error_map );
 		}

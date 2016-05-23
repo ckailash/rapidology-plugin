@@ -10,7 +10,9 @@ $email_providers_array = array(
 	'aweber'			=>  'AWeber' ,
 	'campaign_monitor'	=>  'Campaign Monitor' ,
 	'constant_contact'	=>  'Constant Contact' ,
+	'convertkit'        =>  'ConvertKit',
 	'custom_html'		=>  'Custom HTML Form' ,
+	'drip'				=>  'Drip',
 	'emma'				=>  'Emma' ,
 	'feedblitz'			=>  'Feedblitz' ,
 	'getresponse'		=>  'GetResponse' ,
@@ -53,7 +55,9 @@ $show_name_fields =  array(
 	'activecampaign',
 	'hubspot',
 	'hubspot-standard',
-	'emma'
+	'emma',
+	'convertkit',
+	'drip'
 );
 
 

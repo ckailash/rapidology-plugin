@@ -46,7 +46,7 @@ class rapidology_active_campaign_v2 extends rapidology_active_campagin
         foreach ($form_fields as $field) {
 
 
-            if ($field['required'] && !in_array($field['type'], $this->supported_types)) {
+            if (isset($field['required']) && isset($field['type']) && !in_array($field['type'], $this->supported_types)) {
                 return 'You have an unsupported required field';
             }
 

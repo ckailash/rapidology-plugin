@@ -13,6 +13,8 @@
 			if(container.hasClass('rad_rapidology_click_trigger')){
 				setTimeout( function() {
 					container.removeClass('rad_rapidology_visible');
+					container.removeClass('rad_rapidology_animated');
+					container.removeClass('rad_rapidology_exit_animation');
 				}, 400 );
 			}else{
 				setTimeout( function() {

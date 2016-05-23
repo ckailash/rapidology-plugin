@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: Rapidology By LeadPages
+ * Plugin Name: Rapidology By Leadpages
  * Plugin URI: http://www.rapidology.com?utm_campaign=rp-rp&utm_medium=wp-plugin-screen
- * Version: 1.4.2.2
+ * Version: 1.4.3
  * Description: 100% Free List Building & Popup Plugin...With Over 100 Responsive Templates & 6 Different Display Types For Growing Your Email Newsletter
  * Author: Rapidology
  * Author URI: http://www.rapidology.com?utm_campaign=rp-rp&utm_medium=wp-plugin-screen
@@ -28,7 +28,7 @@ require_once('includes/updater.php');
 require_once('includes/rapidology_functions.php');
 
 class RAD_Rapidology extends RAD_Dashboard {
-	var $plugin_version = '1.4.2.2';
+	var $plugin_version = '1.4.3';
 	var $db_version = '1.0';
 	var $_options_pagename = 'rad_rapidology_options';
 	var $menu_page;
@@ -201,7 +201,7 @@ class RAD_Rapidology extends RAD_Dashboard {
 	}
 
 	function rapidology_update_source() {
-	  $update = wp_remote_get('https://rapidology.com/download/wp_update.json?version=4');
+	  $update = wp_remote_get('https://rapidology.com/download/wp_update.json?version=413');
 	  $update = json_decode($update['body']);
 	  update_option( 'rapidology_update_source', $update->wordpress_update );
 	}
@@ -1796,6 +1796,8 @@ SOL;
 								<option value="aweber">%4$s</option>
 								<option value="campaign_monitor">%6$s</option>
 								<option value="constant_contact">%5$s</option>
+								<option value="convertkit">%22$s</option>
+								<option value="drip">%23$s</option>
 								<option value="emma">%16$s</option>
 								<option value="feedblitz">%14$s</option>
 								<option value="getresponse">%9$s</option>
@@ -1835,7 +1837,9 @@ SOL;
 				esc_html__( 'Salesforce', 'rapidology' ),#18
 				esc_html__( 'Active Campaign', 'rapidology' ),#19
 				esc_html__( 'HubSpot Standard', 'rapidology'),#20
-				esc_html__( 'Redirect Button', 'rapidology')#21
+				esc_html__( 'Redirect Button', 'rapidology'),#21
+				esc_html__( 'ConvertKit', 'rapidology' ),#22
+                esc_html__( 'Drip', 'rapidology')#23
 
 			);
 		}
@@ -2890,6 +2894,16 @@ SOL;
 								$activecampaign = new rapidology_activecampaign();
 								$error_message = $activecampaign->get_active_campagin_forms($details['url'], $details['api_key'], $name);
 								break;
+                            case 'drip':
+                                $drip = new rapidology_drip();
+                                $error_message = $drip->get_drip_campaigns($details['api_key'], $details['username'], $name);
+                                break;
+
+							case 'convertkit' :
+								$convertkit = new rapidology_convertkit();
+								$error_message = $convertkit->get_convertkit_lists( $details['api_key'], $name );
+								break;
+
 						}
 					}
 
@@ -3048,6 +3062,14 @@ SOL;
 			case 'activecampaign':
 				$activecampaign = new rapidology_activecampaign();
 				$error_message = $activecampaign->get_active_campagin_forms($url, $api_key, $name);
+				break;
+            case 'drip':
+                $drip = new rapidology_drip();
+                $error_message = $drip->get_drip_campaigns($api_key, $username, $name);
+                break;
+			case 'convertkit':
+				$convertkit = new rapidology_convertkit();
+				$error_message = $convertkit->get_convertkit_lists( $api_key, $name );
 				break;
 
 
@@ -3208,6 +3230,19 @@ SOL;
 					$activecampaign = new rapidology_activecampaign();
 					$error_message = $activecampaign->subscribe_active_campaign($url, $api_key, $name , $last_name, $email, $lists, $form_id);
 					break;
+                case 'drip':
+                    $api_key    = $options_array['accounts'][ $service ][ $account_name ]['api_key'];
+                    $account_id	= $options_array['accounts'][ $service ][ $account_name ]['username'];
+                    $lists		= $options_array['accounts'][ $service ][ $account_name ]['lists'][$list_id]['list_ids'];
+                    $form_id	= $list_id;//gets confusing the list_id from rapdiology is actualy the form id in active campaign, and lists are the lists you need to subscribe to based on the form
+                    $drip = new rapidology_drip($api_key);
+                    $error_message = $drip->drip_member_subscribe($api_key, $account_id, $email, $form_id, $name, $last_name);
+					break;
+		case 'convertkit' :
+				$api_key       = $options_array['accounts'][ $service ][ $account_name ]['api_key'];
+				$convertkit = new rapidology_convertkit();
+				$error_message = $convertkit->subscribe_convertkit( $api_key, $list_id, $email, $name, $last_name, $dbl_optin );
+				break;
 			}
 		} else {
 			$error_message = __( 'Invalid email', 'rapidology' );
@@ -3425,6 +3460,17 @@ SOL;
 				$infusionsoft = new rapidology_infusionsoft();
 				$form_fields = $infusionsoft->draw_infusionsoft_form($form_fields, $service, $field_values);
 				break;
+
+			case 'drip' :
+				$drip = new rapidology_drip();
+				$form_fields = $drip->draw_drip_form($form_fields, $service, $field_values);
+				break;
+
+			case 'convertkit' :
+				$convertkit = new rapidology_convertkit();
+				$form_fields = $convertkit->draw_convertkit_form($form_fields, $service, $field_values);
+				break;
+
 		}
 
 		$form_fields .= '</div>';
@@ -5163,7 +5209,7 @@ SOL;
 
 	function rad_add_footer_text( $text ) {
 
-		return sprintf( __( $text . ' Rapidology - by LeadPages<sup>&reg;</sup> <a target="_blank" style= "color:#939AAA;" href="%s">Privacy Policy</a> | <a target="_blank" style= "color:#939AAA;" href="%s">Terms of Use</a>' ), $this->privacy_url, $this->tou_url );
+		return sprintf( __( $text . ' Rapidology - by Leadpages<sup>&reg;</sup> <a target="_blank" style= "color:#939AAA;" href="%s">Privacy Policy</a> | <a target="_blank" style= "color:#939AAA;" href="%s">Terms of Use</a>' ), $this->privacy_url, $this->tou_url );
 	}
 
 	function execute_footer_text() {

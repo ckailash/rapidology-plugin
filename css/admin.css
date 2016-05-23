@@ -94,6 +94,9 @@ button.save_account_tab, .rad_dashboard_save_changes button { background-color: 
 .rad_dashboard_service_logo_infusionsoft { background-image: url('../images/infusion-soft-logo.svg'); }
 .rad_dashboard_service_logo_salesforce { background-image: url('../images/salesforce-logo.svg'); }
 .rad_dashboard_service_logo_activecampaign { background-image: url('../images/activecampaign-logo.svg'); }
+.rad_dashboard_service_logo_convertkit { background-image: url('../images/convertkit-logo.svg'); }
+.rad_dashboard_service_logo_drip { background-image: url('../images/drip-logo.svg'); }
+
 
 .rad_rapidology .rad_dashboard_shape_tile:before { display: none; }
 .rad_hidden {display:none;}

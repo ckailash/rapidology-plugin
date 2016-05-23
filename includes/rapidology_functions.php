@@ -51,6 +51,7 @@ function rapid_version_check( $wp = '3.5', $php = '5.4' ) {
  * @param $last_name
  * @return array
  * @description takes the first and last name field, runs so low level logic to decide which fields to drop them into
+ *
  */
 
 function rapidology_name_splitter($name, $last_name){
@@ -67,6 +68,7 @@ function rapidology_name_splitter($name, $last_name){
 			$name = $first_name;
 			$last_name = implode(' ', $name_array); //implode all other names into a string and assign to last name
 		}else{
+			$name = '';
 			$last_name = 'WebLead';//generic last name
 		}
 
